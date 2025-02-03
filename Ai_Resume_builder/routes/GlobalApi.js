@@ -10,4 +10,13 @@ const axiosClient=axios.create({
 })
 
 const CreateNewResume=(data)=>axiosClient.post('/user-resumes',data)
-export default CreateNewResume;
+
+const GetUserResumes=(userEmail)=>axiosClient.get('/user-resumes?filters[userEmail][$eq]='+userEmail)
+// GET /api/:pluralApiId?filters[field][operator]=value  to filter the data acc to user fields from strapi
+
+
+
+export default{
+    CreateNewResume,
+    GetUserResumes
+}

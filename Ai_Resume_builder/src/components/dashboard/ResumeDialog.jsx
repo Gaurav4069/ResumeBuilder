@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import CreateNewResume from "../../../routes/GlobalApi";
+import GlobalApi from "../../../routes/GlobalApi.js";
 import { useUser } from "@clerk/clerk-react";
 import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ResumeDialog = ({ open, setOpen }) => {
   const [resumeTitle, setResumeTitle] = useState();
   const [loading,setLoading]=useState(false);
+  const navigation=useNavigate();
   const {user}=useUser();
   const onCreate=()=>{
     setLoading(true);
@@ -19,9 +21,10 @@ const ResumeDialog = ({ open, setOpen }) => {
         userName:user?.fullName
       }
     }
-    CreateNewResume(data).then(resp=>{
+    GlobalApi.CreateNewResume(data).then(resp=>{
       if(resp){
         setLoading(false)
+        navigation(`/dashboard/resume/:${resp.data.data.documentId}/edit`)//document id by strapi, uuid can also be used
       }
       console.log(resp)
     },(error)=>{
