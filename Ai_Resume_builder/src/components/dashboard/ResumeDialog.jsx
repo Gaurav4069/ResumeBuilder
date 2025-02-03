@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import GlobalApi from "../../../routes/GlobalApi.js";
 import { useUser } from "@clerk/clerk-react";
@@ -8,8 +8,17 @@ import { useNavigate } from "react-router-dom";
 const ResumeDialog = ({ open, setOpen }) => {
   const [resumeTitle, setResumeTitle] = useState();
   const [loading,setLoading]=useState(false);
+  
   const navigation=useNavigate();
   const {user}=useUser();
+  
+  const inputRef=useRef(null);
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus(); // Auto-focus input when dialog opens
+    }
+  }, [open]);
+  
   const onCreate=()=>{
     setLoading(true);
     const uuid=uuidv4();
@@ -21,6 +30,7 @@ const ResumeDialog = ({ open, setOpen }) => {
         userName:user?.fullName
       }
     }
+
     GlobalApi.CreateNewResume(data).then(resp=>{
       if(resp){
         setLoading(false)
@@ -39,6 +49,7 @@ const ResumeDialog = ({ open, setOpen }) => {
         <h2 className="text-xl font-semibold">Create New Resume</h2>
         <p className="text-gray-600 mt-2">Add a title for your new resume</p>
         <input
+          ref={inputRef}//for focus on dialog open
           type="text"
           className="w-full border border-gray-300 rounded-md p-2 mt-2"
           placeholder="Ex. Full Stack Resume"
