@@ -8,3 +8,6 @@ const axiosClient=axios.create({
         'Authorization':`Bearer ${API_KEY}`
     }
 })
+
+const CreateNewResume=(data)=>axiosClient.post('/user-resumes',data)
+export default CreateNewResume;

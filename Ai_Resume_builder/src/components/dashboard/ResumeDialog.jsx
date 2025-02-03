@@ -1,11 +1,32 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import CreateNewResume from "../../../routes/GlobalApi";
+import { useUser } from "@clerk/clerk-react";
+import { Loader2 } from "lucide-react";
 
 const ResumeDialog = ({ open, setOpen }) => {
   const [resumeTitle, setResumeTitle] = useState();
+  const [loading,setLoading]=useState(false);
+  const {user}=useUser();
   const onCreate=()=>{
+    setLoading(true);
     const uuid=uuidv4();
-    console.log(resumeTitle,uuid);
+    const data={
+      data:{
+        title:resumeTitle,
+        resumeID:uuid,
+        userEmail:user?.primaryEmailAddress?.emailAddress,
+        userName:user?.fullName
+      }
+    }
+    CreateNewResume(data).then(resp=>{
+      if(resp){
+        setLoading(false)
+      }
+      console.log(resp)
+    },(error)=>{
+      setLoading(false)
+    })
   }
   if (!open) return null;
 
@@ -35,7 +56,8 @@ const ResumeDialog = ({ open, setOpen }) => {
             // onClick={() => setOpen(false)}
             onClick={()=>onCreate()}
           >
-            Create
+            {loading?
+            <Loader2 className='animate-spin' />:'Create'}
           </button>
         </div>
       </div>
