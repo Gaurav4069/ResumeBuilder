@@ -1,7 +1,7 @@
 import { useUser } from "@clerk/clerk-react";
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "./components/Header.jsx";
-
+import { Toaster } from "react-hot-toast"; 
 export default function App() {
   const {user,isLoaded,isSignedIn}=useUser();
   if(isLoaded && !isSignedIn){
@@ -11,6 +11,7 @@ export default function App() {
     <>
       <Header/>
       <Outlet/>
+      <Toaster position="top-right" reverseOrder={false} /> 
     </>
   )
 }

@@ -1,28 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PersonalDetail from './forms/PersonalDetail';
+import { BiRightArrowAlt as ArrowRight, BiLeftArrowAlt as ArrowLeft } from 'react-icons/bi';
+import { LayoutGrid } from 'lucide-react'; // Import LayoutGrid icon
+import Summery from './forms/Summery';
+import Experience from './forms/Experience';
+
 
 function FormSection() {
-  return (
-    <div>
-      <div>
-        {/* Theme Button */}
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition">
-          Theme
-        </button>
-      </div>
+    const [ activeFromIndex, setActiveFormIndex ] = useState(1);
+    const [enaleNext,setEnableNext]=useState(false);
+    return (
+        <div>
+            <div className='flex justify-between items-center'>
+                {/* Theme Button with LayoutGrid Icon */}
+                <button className="border border-gray-500 text-gray-500 px-4 py-2 rounded flex gap-2">
+                    <LayoutGrid />  {/* Add icon inside the button */}
+                    Theme
+                </button>
 
-      {/* Personal details */}
-      <PersonalDetail />
+                <div className='flex gap-2'>
+                    {activeFormIndex > 1
+                        && <button size="sm" 
+                        onClick={()=>setActiveFormIndex(activeFromIndex-1)}>>
+                        <ArrowLeft /></button>
+                    }
+                    <button disabled={!enableNext} className='flex gap-2' size="sm"
+                    onClick={()=>setActiveFormIndex(activeFromIndex+1)}>
+                        Next <ArrowRight />
+                    </button>
+                </div>
+            </div>
 
-      {/* Summary */}
+            {/* Personal details */}
+            {activeFromIndex==1?    <PersonalDetail enabledNext={(v)=>setEnableNext(v)}/>
+            :activeFormIndex==2?
+            <Summery enabledNext={(v)=>setEnableNext(v)}/>
+            :activeFormIndex==3?
+            <Experience enabledNext={(v)=>setEnableNext(v)}/>
+            :null
+        
+        }
 
-      {/* Experience */}
-
-      {/* Education Details */}
-
-      {/* Skills */}
-    </div>
-  );
+            {/* Other sections */}
+        </div>
+    );
 }
 
 export default FormSection;
