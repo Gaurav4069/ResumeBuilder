@@ -15,12 +15,12 @@ const Dashboard = () => {
   }, [user]);
 
   const GetResumeList = () => {
-    //fetching the resume to the dashboard of a user
-    GlobalApi.GetUserResumes(user?.primaryEmailAddress?.emailAddress).then(
-      (resp) => {
-        setResumeList(resp.data.data);
-      }
-    );
+    if (!user) return;
+    GlobalApi.GetUserResumes(user.primaryEmailAddress.emailAddress)
+      .then((resp) => {
+        setResumeList(resp?.data?.data); 
+      })
+      .catch((err) => console.error("Error fetching resumes:", err.response?.data || err));
   };
   return (
     <div className="p-10 md:px-20 lg:px-32">
