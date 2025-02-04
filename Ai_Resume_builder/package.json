@@ -13,10 +13,12 @@
     "@clerk/clerk-js": "^5.52.0",
     "@clerk/clerk-react": "^5.22.10",
     "@google/generative-ai": "^0.21.0",
+    "@react-pdf/renderer": "^4.1.6",
     "axios": "^1.7.9",
     "lucide-react": "^0.474.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-json-editor-ajrm": "^2.5.14",
     "react-router-dom": "^7.1.5",
     "uuid": "^11.0.5"
   },

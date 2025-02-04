@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-const EditResume = () => {
+const EditResumeUser = () => {
     const params=useParams();
     useEffect(()=>{
         console.log(params.resumeID);
@@ -13,4 +13,4 @@ const EditResume = () => {
   )
 }
 
-export default EditResume
+export default EditResumeUser

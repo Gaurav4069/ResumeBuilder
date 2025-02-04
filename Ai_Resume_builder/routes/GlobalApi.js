@@ -23,10 +23,23 @@ const GetResumeById=(id)=>axiosClient.get('/user-resumes/'+id+"?populate=*")
 
 const DeleteResumeById=(id)=>axiosClient.delete('/user-resumes/'+id)
 
+
+const fetchTemplates = async () => {
+    try {
+      const response = await axiosClient.get("resume-templates");
+      return response.data.data;
+    } catch (error) {
+      console.error("Error fetching resume templates:", error);
+      return [];
+    }
+  };
+
 export default{
     CreateNewResume,
     GetUserResumes,
     UpdateResumeDetail,
     GetResumeById,
-    DeleteResumeById
+    DeleteResumeById,
+
+    fetchTemplates
 }
