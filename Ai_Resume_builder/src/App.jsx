@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { AichatSession } from "../Service/AiModel";
+import Chatbot from "./Chatbot";
+import AtsScoring from "./AtsScoring";
+import ImageUpload from "./ImageUploadAts";
 
 function App() {
   const [input, setInput] = useState("");
@@ -25,7 +28,8 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-100 h-screen flex items-center justify-center">
+    <>
+    <div className="bg-gray-200 h-screen flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">AI Text Generator</h2>
         
@@ -54,7 +58,13 @@ function App() {
           readOnly
         />
       </div>
-    </div>
+      </div>
+      <Chatbot />
+      {/* <AtsScoring /> */}
+      <div className="bg-gray-500 h-screen flex items-center justify-center">
+      <ImageUpload/>
+      </div>
+      </>
   );
 }
 
