@@ -24,15 +24,60 @@ const GetResumeById=(id)=>axiosClient.get('/user-resumes/'+id+"?populate=*")
 const DeleteResumeById=(id)=>axiosClient.delete('/user-resumes/'+id)
 
 
+
+// Fetch media content based on its ID (or other identifier)
+const fetchMedia = async (mediaId) => {
+  try {
+    const response = await axiosClient.get(`upload/files/${mediaId}`);
+    const ch= response.data.data.attributes.url ? `${baseUrl}${response.data.data.attributes.url}` : null;
+    console.log("gaur",ch);
+    return ch;
+  } catch (error) {
+    console.error("Error fetching media:", error);
+    return null;
+  }
+}
 const fetchTemplates = async () => {
-    try {
-      const response = await axiosClient.get("resume-templates");
-      return response.data.data;
-    } catch (error) {
-      console.error("Error fetching resume templates:", error);
-      return [];
+  try {
+    const response = await axiosClient.get("resume-templates", {
+      params: {
+        populate: {
+          thumbnail: {
+            fields: ['url']
+          },
+          preview_image: {
+            fields: ['url']
+          }
+        }
+      },
+    });
+    const templates = response.data.data;
+
+    // Fetch the media URLs for the thumbnail and preview image
+    const baseUrl = "http://localhost:1337"; // Ensure base URL is correctly set
+    for (let template of templates) {
+      const thumbnailId = template.thumbnail?.[0]?.id;
+      const preview_imageId = template.preview_image?.[0]?.id;
+
+      // Construct full URLs
+      if (thumbnailId) {
+        const thumbnailUrl = `${baseUrl}${template.thumbnail[0].url}`;
+        template.thumbnailUrl = thumbnailUrl; // Attach the thumbnail URL
+      }
+      if (preview_imageId) {
+        const preview_imageUrl = `${baseUrl}${template.preview_image[0].url}`;
+        template.preview_imageUrl = preview_imageUrl; // Attach the preview image URL
+      }
     }
-  };
+
+    return templates;
+  } catch (error) {
+    console.error("Error fetching resume templates:", error);
+    return [];
+  }
+};
+
+
 
 export default{
     CreateNewResume,
@@ -41,5 +86,6 @@ export default{
     GetResumeById,
     DeleteResumeById,
 
-    fetchTemplates
+    fetchTemplates,
+    fetchMedia
 }
