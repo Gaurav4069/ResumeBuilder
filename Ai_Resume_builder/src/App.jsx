@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import { AichatSession } from "../Service/AiModel";
-import Chatbot from "./Chatbot";
-import AtsScoring from "./AtsScoring";
-import ImageUpload from "./ImageUploadAts";
+import React from "react";
 import { useUser } from "@clerk/clerk-react";
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "./components/Header.jsx";
+import Chatbot from "./Chatbot.jsx";
+import Footer from "./components/Footer.jsx";
 
-import React from "react";
 
 function App() {
  
-  const {user,isLoaded,isSignedIn}=useUser();
+  const {isLoaded,isSignedIn}=useUser();
   if(isLoaded && !isSignedIn){
     return <Navigate to={'/auth/sign-in'}/>
   }
   return (
     <>
     <Header/>
-    <Outlet/>
+      <Outlet />
+      <Chatbot />
+      <Footer />
    
   </>
   );
