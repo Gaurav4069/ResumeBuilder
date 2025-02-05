@@ -15,25 +15,26 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 const router = createBrowserRouter([
   {
+    path: "/",  
     element: <App />,
     children: [
+      {
+        index: true,  
+        element: <Home />,
+      },
       {
         path: "/dashboard",
         element: <Dashboard />,
       },
       {
-        path:'/dashboard/resume/:resumeID/edit',
-        element:<EditResumeUser/>
+        path: "/dashboard/resume/:resumeID/edit",
+        element: <EditResumeUser />,
       },
       {
         path: "/edit/:templateId",
         element: <EditResume/>,
-      }
+      },
     ],
-  },
-  {
-    path: "/",
-    element: <Home />,
   },
   {
     path: "/auth/sign-in",
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
     element: <SignUpPage />,
   },
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
