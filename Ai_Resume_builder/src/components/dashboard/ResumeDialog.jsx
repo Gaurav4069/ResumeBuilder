@@ -13,7 +13,7 @@ const ResumeDialog = ({ open, setOpen }) => {
   const {user}=useUser();
   
   const inputRef=useRef(null);
-  useEffect(() => {
+  useEffect(() => { 
     if (open) {
       inputRef.current?.focus(); // Auto-focus input when dialog opens
     }
