@@ -8,10 +8,6 @@ import Footer from "./components/Footer.jsx";
 
 function App() {
  
-  const {isLoaded,isSignedIn}=useUser();
-  if(isLoaded && !isSignedIn){
-    return <Navigate to={'/auth/sign-in'}/>
-  }
   return (
     <>
     <Header/>

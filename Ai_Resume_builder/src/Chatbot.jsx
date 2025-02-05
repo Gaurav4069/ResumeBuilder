@@ -172,6 +172,11 @@ const Chatbot = () => {
               placeholder="Type a message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSend();
+                }
+              }}
             />
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600"
