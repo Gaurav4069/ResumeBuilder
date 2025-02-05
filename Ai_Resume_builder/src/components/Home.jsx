@@ -20,8 +20,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
-
       <div className="home">
         <h1>Resume Templates</h1>
         <div className="template-grid">

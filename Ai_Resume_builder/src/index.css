@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add to your App.css */
+/* Add to your App.css
 .template-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -33,4 +33,4 @@
     right: 1rem;
     top: 1rem;
     cursor: pointer;
-  }
+  } */

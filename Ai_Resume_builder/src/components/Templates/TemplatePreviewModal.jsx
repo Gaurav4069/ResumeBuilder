@@ -12,7 +12,7 @@ export default function TemplatePreviewModal({ template, onClose }) {
       <div className="modal-content">
         <button className="close-btn" onClick={onClose}>×</button>
         <img 
-          src={template.attributes.preview_image.url} 
+          src={template?.preview_image?.url || template?.preview_image} 
           alt="Template Preview"
         />
         <button onClick={handleUseTemplate} className="use-btn">
