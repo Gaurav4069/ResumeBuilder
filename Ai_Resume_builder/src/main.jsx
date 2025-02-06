@@ -39,6 +39,9 @@ const router = createBrowserRouter([
     path: "/auth/sign-up",
     element: <SignUpPage />,
   },
+  {
+    
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
