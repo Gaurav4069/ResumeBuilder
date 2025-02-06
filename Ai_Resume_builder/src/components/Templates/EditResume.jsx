@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import EditJson from "./EditJson";
-import ResumePreview from "./ResumePreview"; // ✅ Import the preview component
+import ResumePreview from "./ResumePreview";
 
 const EditResume = () => {
   const location = useLocation();
   const [resumeData, setResumeData] = useState(null);
   const [editedData, setEditedData] = useState(null);
-  const [previewMode, setPreviewMode] = useState(false); // ✅ Add preview mode state
+  const [previewMode, setPreviewMode] = useState(false); //Add preview mode state
 
   useEffect(() => {
     if (location.state?.templateStructure) {
@@ -27,7 +27,7 @@ const EditResume = () => {
       alert("No resume data available for preview.");
       return;
     }
-    setPreviewMode(true); // ✅ Enable preview mode
+    setPreviewMode(true); //Enable preview mode
   };
 
   return (

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+const TemplatePreviewModal = ({ template, onClose, preview_image }) => {
+  const [isOpen, setIsOpen] = useState(false);
 const TemplatePreviewModal = ({ template, onClose, preview_image }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();

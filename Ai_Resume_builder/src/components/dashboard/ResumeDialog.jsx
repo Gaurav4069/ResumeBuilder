@@ -54,6 +54,11 @@ const ResumeDialog = ({ open, setOpen }) => {
           className="w-full border border-gray-300 rounded-md p-2 mt-2"
           placeholder="Ex. Full Stack Resume"
           onChange={(e) => setResumeTitle(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && resumeTitle) {
+              onCreate();
+            }
+          }}
         />
         <div className="flex justify-end gap-4 mt-4">
           <button
@@ -67,7 +72,6 @@ const ResumeDialog = ({ open, setOpen }) => {
               !resumeTitle ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
             }`}
             disabled={!resumeTitle}
-            // onClick={() => setOpen(false)}
             onClick={()=>onCreate()}
           >
             {loading?
