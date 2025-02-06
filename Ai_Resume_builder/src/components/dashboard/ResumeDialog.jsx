@@ -10,7 +10,8 @@ const ResumeDialog = ({ open, setOpen }) => {
   const [loading,setLoading]=useState(false);
   
   const navigation=useNavigate();
-  const {user}=useUser();
+  const { user } = useUser();
+ 
   
   const inputRef=useRef(null);
   useEffect(() => { 
@@ -20,25 +21,27 @@ const ResumeDialog = ({ open, setOpen }) => {
   }, [open]);
   
   const onCreate=()=>{
-    setLoading(true);
-    const uuid=uuidv4();
+    setLoading(true); 
+    const uuid = uuidv4();
+    console.log(resumeTitle,uuid)
     const data={
       data:{
         title:resumeTitle,
-        resumeID:uuid,
+        resumeId:uuid,
         userEmail:user?.primaryEmailAddress?.emailAddress,
         userName:user?.fullName
       }
     }
 
     GlobalApi.CreateNewResume(data).then(resp=>{
-      if(resp){
-        setLoading(false)
-        navigation(`/dashboard/resume/:${resp.data.data.documentId}/edit`)//document id by strapi, uuid can also be used
-      }
       console.log(resp)
+      if (resp) {
+        setLoading(false)
+        navigation(`/dashboard/resume/:${resp.data.data.documentId}/edit`)
+      }
     },(error)=>{
       setLoading(false)
+      console.log(error)
     })
   }
   if (!open) return null;
@@ -66,8 +69,7 @@ const ResumeDialog = ({ open, setOpen }) => {
             className={`px-4 py-2 text-white rounded-md ${
               !resumeTitle ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
             }`}
-            disabled={!resumeTitle}
-            // onClick={() => setOpen(false)}
+            disabled={!resumeTitle} 
             onClick={()=>onCreate()}
           >
             {loading?

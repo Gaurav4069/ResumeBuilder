@@ -12,6 +12,16 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
+      "type": "string",
+      "required": true
+    },
+    "resumeId": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "email"
+    },
+    "userName": {
       "type": "string"
     }
   }

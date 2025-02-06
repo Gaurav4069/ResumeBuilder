@@ -10,7 +10,6 @@ const Dashboard = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    //whenever user have resume list or changed resume list
     user && GetResumeList();
   }, [user]);
 

@@ -4,13 +4,19 @@ import { Plus } from "lucide-react";
 const AddResume = () => {
   return (
     <div
-      className="h-[200px] w-[200px] border 
-      flex items-center justify-center 
-      rounded-full bg-gradient-to-r from-blue-500 to-purple-500
-      hover:scale-105 transition-all hover:shadow-lg 
-      cursor-pointer border-dashed mt-20"
+      className="h-[160px] w-[160px] border-4 border-cyan-400 
+      flex items-center justify-center rounded-full 
+      bg-blue-700 hover:bg-blue-800 cursor-pointer mt-20 
+      shadow-lg hover:shadow-cyan-500/50 
+      animate-scalePulse"
     >
-      <Plus size={100} color="white" />
+      {/* Animated Plus Icon */}
+      <Plus 
+        size={65} 
+        className="text-yellow-400 
+        animate-bounce transition-transform 
+        duration-[1500ms] ease-in-out"
+      />
     </div>
   );
 };
