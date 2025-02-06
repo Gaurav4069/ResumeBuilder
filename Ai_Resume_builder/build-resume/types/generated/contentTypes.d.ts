@@ -369,6 +369,38 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDataTemplateDataTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'data_templates';
+  info: {
+    description: '';
+    displayName: 'Data Template';
+    pluralName: 'data-templates';
+    singularName: 'data-template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::data-template.data-template'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    structure: Schema.Attribute.JSON;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_id: Schema.Attribute.String;
+  };
+}
+
 export interface ApiResumeTemplateResumeTemplate
   extends Struct.CollectionTypeSchema {
   collectionName: 'resume_templates';
@@ -993,6 +1025,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::data-template.data-template': ApiDataTemplateDataTemplate;
       'api::resume-template.resume-template': ApiResumeTemplateResumeTemplate;
       'api::template-category.template-category': ApiTemplateCategoryTemplateCategory;
       'api::user-resume.user-resume': ApiUserResumeUserResume;

@@ -1,13 +1,21 @@
-export default function TemplateCard({ template, onSelect }) {
-  // Extract thumbnail properly
-  const baseUrl = "http://localhost:1337"; // Change this if deployed
-  const thumbnailPath = template.thumbnail?.url || template.thumbnail;
-  const imageUrl = thumbnailPath?.startsWith("/") ? baseUrl + thumbnailPath : thumbnailPath;
-
+const TemplateCard = ({ template, onSelect, thumbnail }) => {
   return (
-    <div className="card" onClick={() => onSelect(template)}>
-      <img src={imageUrl} alt={template.title || "Template"} />
-      <h3>{template.title}</h3>
+    <div
+      className="border rounded-lg shadow-md p-4 bg-gradient-to-r from-blue-500 to-purple-500 w-[270px] cursor-pointer"
+      onClick={() => onSelect(template)}
+    >
+      <div
+        className="p-4 flex justify-center items-center bg-gradient-to-r from-blue-300 to-purple-300 rounded-lg h-[300px] w-[235px] hover:scale-105 transition-all hover:shadow-md border-dashed"
+      >
+        <img
+          src={thumbnail}
+          alt={template.title || "Template"}
+          className="w-full h-full object-cover rounded-lg"
+        />
+      </div>
+      <h2 className="text-center my-2 font-semibold text-white">{template.title}</h2>
     </div>
   );
-}
+};
+
+export default TemplateCard;
