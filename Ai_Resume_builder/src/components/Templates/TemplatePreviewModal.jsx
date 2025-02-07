@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TemplatePreviewModal = ({ template, onClose, preview_image }) => {
   const [isOpen, setIsOpen] = useState(false);
-const TemplatePreviewModal = ({ template, onClose, preview_image }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const {user,isLoaded,isSignedIn}=useUser();
 
   useEffect(() => {
     if (template) {
@@ -16,7 +14,12 @@ const TemplatePreviewModal = ({ template, onClose, preview_image }) => {
   }, [template]);
 
   const handleUseTemplate = () => {
-    navigate(`/edit/${template.id}`, { state: { templateStructure: template.structure } });
+    if(!user && isLoaded && !isSignedIn){
+      navigate("/auth/sign-in");
+    }
+    else{
+      navigate(`/edit/${template.id}`, { state: { templateStructure: template.structure } });
+    } 
   };
 
   return (

@@ -33,7 +33,7 @@ const API_KEY = import.meta.env.VITE_STRAPI_API_KEY;
         `${API_URL}/api/data-templates`,
         {
           data: {
-            title: "My Resume",
+            title: `${user?.fullName}'s Resume`,
             structure: parsedJson,
             user_id: user?.id,
           },
