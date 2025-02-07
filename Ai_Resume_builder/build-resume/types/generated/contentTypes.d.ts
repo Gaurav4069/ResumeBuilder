@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiUserResumeUserResume extends Struct.CollectionTypeSchema {
   collectionName: 'user_resumes';
   info: {
+    description: '';
     displayName: 'User Resume';
     pluralName: 'user-resumes';
     singularName: 'user-resume';
@@ -380,17 +381,27 @@ export interface ApiUserResumeUserResume extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    address: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Education: Schema.Attribute.Component<'education.education', true>;
+    email: Schema.Attribute.String;
+    Experience: Schema.Attribute.Component<'experience.experience', true>;
+    firstName: Schema.Attribute.String;
+    jobTitle: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::user-resume.user-resume'
     > &
       Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resumeId: Schema.Attribute.String;
+    Skills: Schema.Attribute.Component<'skills.skills', true>;
+    summery: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

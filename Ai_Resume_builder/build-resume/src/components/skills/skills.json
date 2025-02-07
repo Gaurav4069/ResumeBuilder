@@ -2,12 +2,16 @@
   "collectionName": "components_skills_skills",
   "info": {
     "displayName": "Skills",
-    "icon": "seed"
+    "icon": "seed",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "skills": {
-      "type": "richtext"
+    "name": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
     }
   }
 }

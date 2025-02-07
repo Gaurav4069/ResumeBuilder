@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { LoaderCircle } from 'lucide-react';
-import toast from 'react-hot-toast'; // Import toast and Toaster
+import toast from 'react-hot-toast';
+import { ResumeInfoContext } from '../../../../Context/ResumeInfoContext';
+import GlobalApi from '../../../../../routes/GlobalApi';
 
-export default function PersonalDetail({ enabledNext }) {
+export default function PersonalDetail() {
   const params = useParams();
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
@@ -11,17 +13,26 @@ export default function PersonalDetail({ enabledNext }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(params);
-  }, []);
+    if (resumeInfo) {
+      setFormData({
+        firstName: resumeInfo.firstName || "",
+        lastName: resumeInfo.lastName || "",
+        jobTitle: resumeInfo.jobTitle || "",
+        address: resumeInfo.address || "",
+        phone: resumeInfo.phone || "",
+        email: resumeInfo.email || "",
+      });
+    }
+  }, [resumeInfo]);
 
   const handleInputChange = (e) => {
-    enabledNext(false);
-    const { name, value } = e.target; // Fixed 'e.taget' typo
+    const { name, value } = e.target;
 
     setFormData({
       ...formData,
       [name]: value,
     });
+
     setResumeInfo({
       ...resumeInfo,
       [name]: value,
@@ -33,24 +44,24 @@ export default function PersonalDetail({ enabledNext }) {
     setLoading(true);
 
     const data = { data: formData };
+    console.log("Submitting Data:", data);
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId, data).then(
-      (resp) => {
-        console.log(resp);
-        enabledNext(true);
+    GlobalApi.UpdateResumeDetail(params?.resumeId, data)
+      .then((resp) => {
         setLoading(false);
-        toast.success("Details updated successfully!"); // Show success toast
-      },
-      (error) => {
+        console.log("Response:", resp);
+        toast.success("Details updated successfully!");
+      })
+      .catch((error) => {
         setLoading(false);
-        // toast.error("Failed to update details. Please try again!"); // Show error toast
-      }
-    );
+        console.error("Error Response:", error.response?.data || error);
+        toast.error("Failed to update details!");
+        
+      });
   };
 
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      
       <h2 className="font-bold text-lg">Personal Detail</h2>
       <p>Get started with the basic information</p>
 
@@ -61,7 +72,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="firstName"
               required
-              defaultValue={resumeInfo?.firstName}
+              value={formData?.firstName || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -71,7 +82,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="lastName"
               required
-              defaultValue={resumeInfo?.lastName}
+              value={formData?.lastName || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -81,7 +92,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="jobTitle"
               required
-              defaultValue={resumeInfo?.jobTitle}
+              value={formData?.jobTitle || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -91,7 +102,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="address"
               required
-              defaultValue={resumeInfo?.address}
+              value={formData?.address || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -101,7 +112,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="phone"
               required
-              defaultValue={resumeInfo?.phone}
+              value={formData?.phone || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -111,7 +122,7 @@ export default function PersonalDetail({ enabledNext }) {
             <input
               name="email"
               required
-              defaultValue={resumeInfo?.email}
+              value={formData?.email || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
@@ -121,7 +132,7 @@ export default function PersonalDetail({ enabledNext }) {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 rounded border border-gray-500 text-gray-500 flex items-center gap-2"
+            className="px-4 py-2 rounded border bg-blue-500 border-blue-700 text-white flex items-center gap-2"
           >
             {loading ? <LoaderCircle className="animate-spin w-5 h-5" /> : "Save"}
           </button>

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/dashboard/resume/:resumeID/edit",
+        path: "/dashboard/resume/:resumeId/edit",
         element: <EditResume />,
       },
     ],

@@ -2,7 +2,8 @@
   "collectionName": "components_education_educations",
   "info": {
     "displayName": "Education",
-    "icon": "brush"
+    "icon": "brush",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -22,7 +23,7 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

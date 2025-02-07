@@ -36,6 +36,7 @@ const ResumeDialog = ({ open, setOpen }) => {
     GlobalApi.CreateNewResume(data).then(resp=>{
       console.log(resp)
       if (resp) {
+        console.log(resp.data.data.documentId)
         setLoading(false)
         navigation(`/dashboard/resume/:${resp.data.data.documentId}/edit`)
       }

@@ -1,5 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import RichTextEditor from '../RichTextEditor';
+import { ResumeInfoContext } from '../../../../Context/ResumeInfoContext';
+import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import GlobalApi from '../../../../../routes/GlobalApi';
 
 const formField = {
     title: '',
@@ -13,8 +17,15 @@ const formField = {
 
 export default function Experience() {
     const [experienceList, setExperienceList] = useState([formField]);
+    const params = useParams();
 
-    const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext);
+    const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
+    useEffect(() => {
+        if (resumeInfo?.Experience?.length > 0) {
+          setExperienceList([...resumeInfo.Experience]);
+        }
+      }, [resumeInfo?.Experience]);
+
 
     const handleChange = (index, event) => {
         const newEntries=experienceList.slice();
@@ -24,7 +35,7 @@ export default function Experience() {
     };
 
     const AddNewExperience=()=>{
-        setExperienceList([...experienceList,formField])
+        setExperienceList([...experienceList,{...formField}])
     }
     const RemoveNewExperience=()=>{
         setExperienceList(experienceList=>experienceList.slice(0,-1))
@@ -32,17 +43,36 @@ export default function Experience() {
 
     const handleRichTextEditor=(e,name,index)=>{
         const newEntries=experienceList.slice();
-        newEntries[index][name] = e.target.value;
+        newEntries[index][name]=e.target.value;
+       
         setExperienceList(newEntries);
     }
+    
 
+    useEffect(() => {
+        setResumeInfo((prev) => ({
+          ...prev,
+          experience: experienceList,
+        }));
+      }, [experienceList, setResumeInfo]);
+    
+    const onSave=()=>{
+        const data={
+            data:{
+                Experience:experienceList.map(({ id, ...rest }) => rest)
+            }
+        }
 
-    useEffect(()=>{
-       setResumeInfo({
-        ...resumeInfo,
-        experience:experienceList
-       })
-    },[experienceList])
+         console.log(experienceList)
+
+        GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(res=>{
+            console.log(res);
+            toast.success('Details updated !')
+        },(error)=>{
+            toast.error('Failed to update details !')
+        })
+
+    }
 
     return (
         <div>
@@ -132,9 +162,11 @@ export default function Experience() {
 
                                 {/* Work Summary */}
                                 <div className='col-span-2'>
-                                    <RichTextEditor
-                                    index={index}
-                                    onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}/>
+                                <RichTextEditor
+                           index={index}
+                           defaultValue={item?.workSummery}
+                           onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}  />
+
                                 </div>
                             </div>
                         </div>
@@ -146,7 +178,13 @@ export default function Experience() {
                     <button onClick={RemoveNewExperience} className="border border-primary text-primary px-4 py-2 rounded-md hover:bg-gray-100">- Remove More Experience</button>
 
                     </div>
-                    <button>Save</button>
+                    <button
+                        type="submit"
+                        onClick={()=>onSave()}
+                        className="px-4 py-2 rounded border bg-blue-500 border-blue-700 text-white flex items-center gap-2"
+                    >
+                        { "Save"}
+                    </button>
                 </div>
             </div>
         </div>
