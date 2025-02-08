@@ -13,9 +13,16 @@ export default {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        scalePulse: "scalePulse 2s infinite ease-in-out",
+      },
+      keyframes: {
+        scalePulse: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
         },
       },
     },
   },
   plugins: [],
+}
 }

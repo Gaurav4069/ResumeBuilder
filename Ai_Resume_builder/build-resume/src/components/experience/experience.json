@@ -2,7 +2,8 @@
   "collectionName": "components_experience_experiences",
   "info": {
     "displayName": "Experience",
-    "icon": "link"
+    "icon": "link",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -24,7 +25,7 @@
     "endDate": {
       "type": "string"
     },
-    "workSummary": {
+    "workSummery": {
       "type": "richtext"
     }
   }

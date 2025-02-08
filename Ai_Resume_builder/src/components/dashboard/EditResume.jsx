@@ -6,7 +6,7 @@ import FormSection from '../../Dashboard/Resume/Components/FormSection';
 import GlobalApi from '../../../routes/GlobalApi';
 
 const EditResume = () => {
-  const {resumeId} = useParams();
+  const {resumeID} = useParams();
     const [resumeInfo, setResumeInfo] = useState();
     const [output, setOutput] = useState();
     useEffect(()=>{
@@ -15,7 +15,7 @@ const EditResume = () => {
     }, [])
     
     const GetResumeInfo = () => {
-        GlobalApi.GetResumeById(resumeId).then((resp) => { 
+        GlobalApi.GetResumeById(resumeID).then((resp) => { 
             setResumeInfo(resp?.data.data);
             console.log(resp);
         }).catch((err) => console.error("Error fetching resume:", err.response?.data || err));

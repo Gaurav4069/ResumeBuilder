@@ -2,6 +2,7 @@
 
 /**
  * user-resume controller
+ * user-resume service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;

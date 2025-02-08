@@ -56,8 +56,8 @@ const Chatbot = () => {
       {isChatOpen && (
         <div className="w-80 h-96 flex flex-col bg-white shadow-lg rounded-lg fixed bottom-16 right-5">
           {/* Header */}
-          <div className="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg">
-            <h2 className="text-lg font-semibold">Chatbot</h2>
+          <div className="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg ">
+          <h2 className="text-lg font-semibold ">Chat With Me</h2>
             <button onClick={() => setIsChatOpen(false)}>
               <X size={20} />
             </button>

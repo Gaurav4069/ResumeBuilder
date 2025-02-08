@@ -15,7 +15,6 @@
     "@strapi/plugin-users-permissions": "5.9.0",
     "@strapi/strapi": "5.9.0",
     "better-sqlite3": "11.3.0",
-    "openai": "^4.83.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -28,5 +27,10 @@
   },
   "strapi": {
     "uuid": "ad8c35f6-8b75-463b-b031-1d6f626dac7b"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1"
   }
 }

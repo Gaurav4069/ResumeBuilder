@@ -1,14 +1,16 @@
 import React from "react";
-import { useUser } from "@clerk/clerk-react";
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Chatbot from "./Chatbot.jsx";
 import Footer from "./components/Footer.jsx";
+import { Toaster } from "react-hot-toast";
+
 
 
 function App() {
   return (
     <>
+      <Toaster />
     <Header/>
       <Outlet />
       <Chatbot />

@@ -10,7 +10,8 @@ const ResumeDialog = ({ open, setOpen }) => {
   const [loading,setLoading]=useState(false);
   
   const navigation=useNavigate();
-  const {user}=useUser();
+  const { user } = useUser();
+ 
   
   const inputRef=useRef(null);
   useEffect(() => { 
@@ -20,8 +21,9 @@ const ResumeDialog = ({ open, setOpen }) => {
   }, [open]);
   
   const onCreate=()=>{
-    setLoading(true);
-    const uuid=uuidv4();
+    setLoading(true); 
+    const uuid = uuidv4();
+    console.log("uiid",resumeTitle,uuid)
     const data={
       data:{
         title:resumeTitle,
@@ -30,14 +32,19 @@ const ResumeDialog = ({ open, setOpen }) => {
         userName:user?.fullName
       }
     }
-
+    console.log(data)
     GlobalApi.CreateNewResume(data).then(resp=>{
       if(resp){
+        console.log(resp)
         setLoading(false)
-        navigation(`/dashboard/resume/:${resp.data.data.documentId}/edit`)//document id by strapi, uuid can also be used
+        setTimeout(() => {
+          navigation(`/dashboard/resume/${resp.data.data.documentId}/edit`);
+        }, 500);
+      
       }
       console.log(resp)
     },(error)=>{
+      console.log(error)
       setLoading(false)
     })
   }

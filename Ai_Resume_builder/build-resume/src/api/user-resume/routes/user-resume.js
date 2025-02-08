@@ -2,6 +2,7 @@
 
 /**
  * user-resume controller
+ * user-resume router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;

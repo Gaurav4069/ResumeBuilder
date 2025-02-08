@@ -19,9 +19,7 @@ const saveUserResume = async (resumeData) => {
 const fetchMedia = async (mediaId) => {
   try {
     const response = await axiosClient.get(`upload/files/${mediaId}`);
-    const ch= response.data.data.attributes.url ? `${STRAPI_URL}${response.data.data.attributes.url}` : null;
-    console.log("gaur",ch);
-    return ch;
+    return response.data.data.attributes.url ? `${STRAPI_URL}${response.data.data.attributes.url}` : null;
   } catch (error) {
     console.error("Error fetching media:", error);
     return null;
@@ -68,14 +66,14 @@ const fetchTemplates = async () => {
 
 
 // CRUD Operations for User Resumes
-const CreateNewResume = (data) => axiosClient.post('/user-resumes', data);
+const CreateNewResume = (data) => axiosClient.post('/user-resumes',data);
 
 const GetUserResumes = (userEmail) => {
     const encodedEmail = encodeURIComponent(userEmail); // Encode email to avoid issues
     return axiosClient.get(`/user-resumes?filters[userEmail][$eq]=${encodedEmail}`);
 };
 
-const UpdateResumeDetail = (id, data) => axiosClient.put(`/user-resumes/${id}`, data);
+const UpdateResumeDetail = (id, data) => axiosClient.put(`/user-resumes/${id}`,data);
 
 const GetResumeById = (id) => axiosClient.get(`/user-resumes/${id}?populate=*`);
 
