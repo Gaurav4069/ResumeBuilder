@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignInPage from "./auth/SignInPage.jsx";
@@ -9,6 +10,7 @@ import Dashboard from "./components/dashboard/Dashboard.jsx";
 import {ClerkProvider} from '@clerk/clerk-react'
 import SignUpPage from "./auth/SignUpPage.jsx";
 import EditResume from "./components/dashboard/EditResume.jsx";
+import ViewResume from "./my-resume/[resumeId]/view/index.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -40,7 +42,8 @@ const router = createBrowserRouter([
     element: <SignUpPage />,
   },
   {
-    
+    path: '/my-resume/:resumeId/view',
+    element: <ViewResume />,
   }
 ]);
 

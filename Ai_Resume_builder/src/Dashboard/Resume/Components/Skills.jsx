@@ -61,7 +61,7 @@ function Skills() {
     useEffect(() => {
         setResumeInfo({
             ...resumeInfo,
-            skills: skillsList
+            Skills: skillsList
         })
     }, [skillsList])
 

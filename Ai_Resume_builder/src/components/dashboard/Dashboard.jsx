@@ -23,13 +23,11 @@ const Dashboard = () => {
         setResumeList(resp?.data?.data); 
       })
       .catch((err) => console.error("Error fetching resumes:", err.response?.data || err));
-    
-     
-    
-    
   };
 
-  
+  const removeDeletedResume = (deletedId) => {
+    setResumeList((prevList) => prevList.filter((resume) => resume.documentId !== deletedId));
+  };  
 
   return (
     <div className="p-10 md:px-20 lg:px-32  bg-gradient-to-br from-gray-500 via-gray-700 to-black ">
@@ -48,7 +46,7 @@ const Dashboard = () => {
         {/* Map through resumeList and render ResumeCardItem components */}
         {resumeList.length > 0 &&
           resumeList.map((resume, index) => (
-            <ResumeCardItem resume={resume} key={index} />
+            <ResumeCardItem resume={resume} key={index} onDeleteSuccess={removeDeletedResume} />
           ))}
       </div>
 
