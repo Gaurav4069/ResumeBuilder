@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div>
-      
+     
       {/* Hero section */}
 
 <section
@@ -45,7 +45,8 @@ const Home = () => {
       </div>
     </div>
   </div>
-</section>
+          </section>
+          
       
       {/* features */}
       <section id="features" className="container mx-auto px-4 space-y-6 bg-slate-50 py-8 md:py-12 lg:py-20">

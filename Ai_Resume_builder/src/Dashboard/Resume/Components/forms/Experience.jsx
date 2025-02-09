@@ -41,8 +41,7 @@ export default function Experience() {
         Experience: newEntries, 
       }));
   };
-console.log('experienceList',experienceList)
- // Add a new experience entry
+
 const AddNewExperience = () => {
     const updatedExperienceList = [...experienceList, { ...formField }];
     setExperienceList(updatedExperienceList);
@@ -73,6 +72,10 @@ const RemoveNewExperience = () => {
     const newEntries = experienceList.slice();
     newEntries[index][name] = e.target.value;
     setExperienceList(newEntries);
+    setResumeInfo((prev) => ({
+      ...prev,
+      Experience: newEntries,
+    }));
   };
 
   // Save the data and update resumeInfo
@@ -85,9 +88,7 @@ const RemoveNewExperience = () => {
 
     GlobalApi.UpdateResumeDetail(params?.resumeId, data)
       .then((res) => {
-        console.log(res);
         toast.success('Details updated!');
-        // Update resumeInfo after saving
         setResumeInfo((prev) => ({
           ...prev,
           Experience: experienceList,

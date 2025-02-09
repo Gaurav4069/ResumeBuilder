@@ -17,43 +17,42 @@ export default function Education() {
   const params = useParams();
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   
-  const [educationalList,setEducationalList]=useState([
-    {
-      universityName:'',
-      degree:'',
-      major:'',
-      startDate:'',
-      endDate:'',
-      description:''
-    }
-  ])
-  console.log('resumeinfo',resumeInfo)
-console.log('educationalList',educationalList)  
-  useEffect(()=>{
-    resumeInfo&&setEducationalList(resumeInfo?.Education)
-  },[])
+  const [educationalList,setEducationalList]=useState([])
+ 
+  useEffect(() => {
+      if (resumeInfo?.Education?.length > 0) {
+          setEducationalList([...resumeInfo.Education]);
+      } else {
+        setEducationalList([formField]);
+      }
+    }, [resumeInfo]);
 
   const handleChange=(index,event)=>{
     const newEntries=educationalList.slice();
     const {name,value}=event.target;
     newEntries[index][name]=value;
     setEducationalList(newEntries);
+    setResumeInfo((prev) => ({
+      ...prev,
+      Education: newEntries, 
+    }));
   }
 
-  const AddNewEducation=()=>{
-    setEducationalList([...educationalList,
-      {
-        universityName:'',
-        degree:'',
-        major:'',
-        startDate:'',
-        endDate:'',
-        description:''
-      }
-    ])
+  const AddNewEducation = () => {
+    const updatedEducationList = [...educationalList, { ...formField }];
+    setEducationalList(updatedEducationList);
+    setResumeInfo((prev) => ({
+      ...prev,
+      Education: updatedEducationList,
+    }));
   }
-  const RemoveEducation=()=>{
-    setEducationalList(educationalList=>educationalList.slice(0,-1))
+  const RemoveEducation = () => {
+    const updatedEducationList = educationalList.slice(0, -1); 
+    setEducationalList(updatedEducationList);
+    setResumeInfo((prev) => ({
+      ...prev,
+      Education: updatedEducationList,
+    }));
 
   }
 
@@ -64,21 +63,18 @@ console.log('educationalList',educationalList)
       }
     }
 
-    GlobalApi.UpdateResumeDetail(params.resumeId,data).then(resp=>{
-      console.log(resp);
-      toast.success('Details updated !')
+    GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
+      toast.success('Details updated !');
+      setResumeInfo((prev) => ({
+        ...prev,
+        Education: educationalList,
+      }));
     },(error)=>{
       toast.error('Server Error, Please try again!')
     })
 
   }
 
-  useEffect(()=>{
-    setResumeInfo({
-      ...resumeInfo,
-      education:educationalList
-    })
-  },[educationalList])
 
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">

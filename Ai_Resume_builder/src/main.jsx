@@ -11,6 +11,8 @@ import {ClerkProvider} from '@clerk/clerk-react'
 import SignUpPage from "./auth/SignUpPage.jsx";
 import EditResume from "./components/dashboard/EditResume.jsx";
 import ViewResume from "./my-resume/[resumeId]/view/index.jsx";
+import AtsScoring from "./AtsScoring/AtsScoring.jsx";
+import ImageUpload from "./AtsScoring/ImageUploadAts.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/resume/:resumeId/edit",
         element: <EditResume />,
+      },
+      {
+        path: "/ManualAtsScoring",
+        element: <AtsScoring />,
+      },
+      {
+        path: "/ImageAtsScoring",
+        element: <ImageUpload />,
       },
     ],
   },

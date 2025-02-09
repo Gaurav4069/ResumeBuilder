@@ -1,6 +1,6 @@
 // {text:"Check the ATS score based on scale of 0-100 and give answer in numeric value  and also suggeest the changes to improve the score"},
 import React, { useState } from "react";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const AtsScoring = () => {
@@ -69,27 +69,30 @@ const AtsScoring = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-4">ATS Resume Score Checker</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-white px-4">
+      <h1 className="text-4xl font-bold mb-6 text-blue-400">ATS Resume Score Checker</h1>
 
-      <p className="text-gray-800 mb-6 text-center max-w-xl text-lg leading-relaxed">
-        <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
-          Applicant Tracking System (ATS) Score
-        </span> 
-        evaluates how well your <span className="font-semibold text-blue-600">resume</span> matches a job description.
-        A <span className="font-bold text-green-600">higher ATS score</span> increases your chances of getting shortlisted.
-        Ensure your resume is <span className="underline decoration-wavy decoration-blue-500">well-structured</span>, 
-        <span className="font-medium text-purple-600"> keyword-optimized</span>, and <span className="font-medium text-green-600">job-relevant</span>.
-      </p>
+      <p className="text-gray-300 mt-3 max-w-lg text-md leading-relaxed">
+          <span className="font-extrabold text-white">Applicant Tracking System (ATS) Score</span>  
+          evaluates how well your <span className="text-yellow-400 font-semibold">resume</span>  
+          matches a job description.  
+          A <span className="font-bold text-green-400">higher ATS score</span>  
+          increases your chances of getting shortlisted.  
+          Ensure your resume is  
+          <span className="underline decoration-wavy decoration-blue-500"> well-structured</span>,  
+          <span className="font-medium text-purple-400"> keyword-optimized</span>, and  
+          <span className="font-medium text-green-400"> job-relevant</span>.
+        </p>
 
-      <div className="bg-white p-6 shadow-md rounded-lg w-full max-w-lg">
-        <h2 className="text-lg font-semibold mb-4 text-center">Check Your Ats Score</h2>
+    
+      <div className="bg-gray-800 p-6 shadow-lg rounded-lg w-full max-w-lg border border-gray-700">
+        <h2 className="text-xl font-semibold mb-4 text-center text-purple-400">Check Your ATS Score</h2>
 
         {/* Form Fields */}
         <div className="mb-4">
-          <label className="block font-medium text-gray-700">Job Description</label>
+          <label className="block font-medium text-gray-300">Job Description</label>
           <textarea 
-            className="w-full border border-gray-300 p-2 rounded mt-1"
+            className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white shadow-md focus:ring focus:ring-blue-500 focus:outline-none"
             rows="4"
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
@@ -97,45 +100,60 @@ const AtsScoring = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium text-gray-700">Skills</label>
+          <label className="block font-medium text-gray-300">Skills</label>
           <input 
             type="text"
-            className="w-full border border-gray-300 p-2 rounded mt-1"
+            className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white shadow-md focus:ring focus:ring-blue-500 focus:outline-none"
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium text-gray-700">Experience</label>
+          <label className="block font-medium text-gray-300">Experience</label>
           <input 
             type="text"
-            className="w-full border border-gray-300 p-2 rounded mt-1"
+            className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white shadow-md focus:ring focus:ring-blue-500 focus:outline-none"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
           />
         </div>
+    
 
         <button 
-          className="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700"
+          className="w-full py-3 rounded bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:opacity-90 transition duration-300"
           onClick={handleCheckScore}
           disabled={loading}
         >
           {loading ? "Checking..." : "Check Your ATS Score"}
         </button>
 
-        {atsScore && (
-          <div className="mt-4 p-4 bg-gray-200 rounded-md">
-            <p style={{ width: 200, height: 200 }} className="mx-auto">
-        <CircularProgressbar value={atsScore} text={`${atsScore}%`} />
-      </p>
+        {atsScore !== null && (
+          <div className="mt-6 flex flex-col items-center">
+            <div style={{ width: 150, height: 150 }}>
+              <CircularProgressbar 
+                value={atsScore} 
+                text={`${atsScore}%`} 
+                styles={buildStyles({
+                  textColor: "#ffffff",
+                  pathColor: atsScore > 75 
+                    ? "rgba(0, 255, 127, 1)" 
+                    : atsScore > 50 
+                    ? "rgba(255, 215, 0, 1)"  
+                    : "rgba(255, 69, 0, 1)",  
+                  trailColor: "rgba(255, 255, 255, 0.15)", 
+                  strokeLinecap: "round",
+                  textSize: "20px",
+                })}
+                
+              />
+            </div>
           </div>
         )}
-
-        {atsSuggestions && (
-          <div className="mt-4 p-4 bg-gray-200 rounded-md">
-            <h3 className="font-semibold text-lg">Suggestions to Improve:</h3>
-            <p className="text-green-700">{atsSuggestions}</p>
+           {atsSuggestions && (
+          <div className="mt-4 p-4 bg-gray-700 text-gray-200 rounded-md border border-gray-600">
+            <h3 className="font-semibold text-lg text-blue-300">Suggestions to Improve:</h3>
+            <p className="text-green-400">{atsSuggestions}</p>
           </div>
         )}
       </div>

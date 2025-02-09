@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { LoaderCircle } from 'lucide-react';
-import toast from 'react-hot-toast';
-import { ResumeInfoContext } from '../../../../Context/ResumeInfoContext';
-import GlobalApi from '../../../../../routes/GlobalApi';
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { LoaderCircle } from "lucide-react";
+import toast from "react-hot-toast";
+import { ResumeInfoContext } from "../../../../Context/ResumeInfoContext";
+import GlobalApi from "../../../../../routes/GlobalApi";
 
 export default function PersonalDetail() {
   const params = useParams();
@@ -11,6 +11,10 @@ export default function PersonalDetail() {
 
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
+
+  // State for geocoding suggestions
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     if (resumeInfo) {
@@ -22,9 +26,11 @@ export default function PersonalDetail() {
         phone: resumeInfo.phone || "",
         email: resumeInfo.email || "",
       });
+      setQuery(resumeInfo.address || ""); // Initialize query with address
     }
   }, [resumeInfo]);
 
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -37,6 +43,38 @@ export default function PersonalDetail() {
       ...resumeInfo,
       [name]: value,
     });
+
+    // If the address field is being updated, update the geocoding query
+    if (name === "address") {
+      setQuery(value);
+      fetchGeocodingResults(value);
+    }
+  };
+
+  // Fetch geocoding suggestions
+  const fetchGeocodingResults = async (query) => {
+    if (!query) {
+      setResults([]);
+      return;
+    }
+
+    const url = `https://api.locationiq.com/v1/autocomplete.php?key=pk.8152931c0b2b98a57bb3d874f5f97e0a&q=${query}&limit=5&dedupe=1`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // Handle selecting a suggested address
+  const handleSelectAddress = (selectedAddress) => {
+    setQuery(selectedAddress);
+    setFormData({ ...formData, address: selectedAddress });
+    setResumeInfo({ ...resumeInfo, address: selectedAddress });
+    setResults([]); // Clear results after selection
   };
 
   const onSave = (e) => {
@@ -56,7 +94,6 @@ export default function PersonalDetail() {
         setLoading(false);
         console.error("Error Response:", error.response?.data || error);
         toast.error("Failed to update details!");
-        
       });
   };
 
@@ -97,15 +134,31 @@ export default function PersonalDetail() {
               className="mt-2 p-2 w-full border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 relative">
             <label className="text-sm">Address</label>
             <input
               name="address"
+              type="text"
               required
-              value={formData?.address || ""}
+              value={query}
               onChange={handleInputChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
+              placeholder="Enter address"
             />
+            {/* Geocoding Suggestions Dropdown */}
+            {results.length > 0 && (
+              <ul className="absolute z-10 bg-white border border-gray-300 rounded mt-1 w-full shadow-lg">
+                {results.map((result, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSelectAddress(result.display_name)}
+                    className="p-2 cursor-pointer hover:bg-gray-100"
+                  >
+                    {result.display_name}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <div>
             <label className="text-sm">Phone</label>
