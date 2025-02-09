@@ -1,14 +1,9 @@
-import { UserButton } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import SummeryAi from "./SummeryAi";
 import TemplateCard from "./Templates/TemplateCard";
 import TemplatePreviewModal from "./Templates/TemplatePreviewModal";
 import GlobalApi from "../../routes/GlobalApi.js";
-import { Asterisk } from "lucide-react";
-import AtsScoring from "../AtsScoring.jsx";
-import ImageUpload from "../ImageUploadAts.jsx";
-import Geocoding from "../../Geocoding.jsx";
+import AtsScoring from "../AtsScoring/AtsScoring.jsx";
+import ImageUpload from "../AtsScoring/ImageUploadAts.jsx";
 
 const Home = () => {
   const [templates, setTemplates] = useState([]);
@@ -26,7 +21,7 @@ const Home = () => {
 
   return (
     <div>
-      
+     
       {/* Hero section */}
 
 <section
@@ -68,17 +63,15 @@ const Home = () => {
       </div>
     </div>
   </div>
-</section>
+          </section>
+          
       
       {/* features */}
-      <section
-  id="features"
-  className="w-full mx-0 space-y-6 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-900 bg-opacity-40 py-8 md:py-12 lg:py-20"
->
+      <section id="features" className="container mx-auto px-4 space-y-6 bg-slate-50 py-8 md:py-12 lg:py-20">
 
     <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
 
-        <h2 className="font-bold text-3xl text-white underline leading-[1.1] sm:text-3xl md:text-6xl">Features</h2>
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Features</h2>
 
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             The product can personalize user experiences by understanding individual preferences and tailoring
@@ -182,16 +175,7 @@ const Home = () => {
     </div>
 
 </section>
-<AtsScoring/>
-<ImageUpload/>
-<Geocoding/>
-
-
 {/* resume template  */}
-
-
-  
-
     <div className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-800 bg-opacity-40 min-h-screen flex flex-col items-center py-10">
       <div className="container w-full max-w-7xl px-6">
         <h1 className="text-4xl font-extrabold text-center text-pretty text-white mb-8 underline">
@@ -217,6 +201,8 @@ const Home = () => {
         )}
       </div>
     </div>
+    <AtsScoring/>
+    <ImageUpload/>
     </div>
   )
 };

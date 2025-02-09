@@ -6,10 +6,8 @@ function EducationalPreview() {
   const [educationData, setEducationData] = useState(resumeInfo?.education || []);
 
   useEffect(() => {
-    if (resumeInfo?.education) {
-      setEducationData(resumeInfo.education);
-    }
-  }, [resumeInfo]); // Automatically updates when resumeInfo changes
+    setEducationData(resumeInfo?.Education || []);
+  }, [resumeInfo]); 
 
   return (
     <div className="my-6">

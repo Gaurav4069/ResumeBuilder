@@ -12,3 +12,24 @@
   list-style: decimal;
   padding-left: 2em;
 }
+ /* this media query is aplied only when the page is printed */
+@media print{
+  #no-print{
+    display: none;
+  }
+  #print-area{
+    display: block;
+  }
+  body{
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@page{
+  size:auto;
+  margin:0mm;
+}
+
+/* The @page rule in CSS is used to control the appearance of printed pages. It allows you to define page size, margins, and other properties specifically for printing. */
