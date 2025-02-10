@@ -26,12 +26,13 @@ const Header = () => {
   }, [index]);
 
   return (
-    <div className="p-3 px-5 flex justify-between items-center shadow-md bg-slate-900 text-white">
+    <div className="p-3 px-5 flex justify-between items-center shadow-md bg-[#D1E1EC] text-white border-b border-gray-200 dark:border-gray-600">
+      {/* bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 */}
       {/* Logo */}
       <img src="/logo.png" className="w-16 h-16 rounded-full object-cover" alt="Logo" />
 
       {/* Welcome Text with Typewriter Effect */}
-      <h2 className="text-xl font-semibold text-center min-w-[220px] text-slate-300">
+      <h2 className="text-xl font-semibold text-center min-w-[220px] text-black">
         {displayText}
         <span className="animate-pulse text-blue-500">|</span> {/* Blinking cursor effect */}
       </h2>
