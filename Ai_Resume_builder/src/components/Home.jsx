@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import TemplateCard from "./Templates/TemplateCard";
 import TemplatePreviewModal from "./Templates/TemplatePreviewModal";
 import GlobalApi from "../../routes/GlobalApi.js";
-import AtsScoring from "../AtsScoring/AtsScoring.jsx";
-import ImageUpload from "../AtsScoring/ImageUploadAts.jsx";
 
 const Home = () => {
   const [templates, setTemplates] = useState([]);
@@ -146,7 +144,7 @@ const Home = () => {
         <div
             className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"
                     className="h-12 w-12 fill-current">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
@@ -201,8 +199,6 @@ const Home = () => {
         )}
       </div>
     </div>
-    <AtsScoring/>
-    <ImageUpload/>
     </div>
   )
 };
