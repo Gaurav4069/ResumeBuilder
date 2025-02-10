@@ -1,40 +1,74 @@
-import { FileText } from "lucide-react";
+import { Trash2, Download, Edit, Eye, FileText, MoreVertical } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import GlobalApi from "../../../routes/GlobalApi";
+import toast from "react-hot-toast";
 
-const ResumeCardItem = ({ resume }) => {
+const ResumeCardItem = ({ resume ,onDeleteSuccess}) => {
+  const navigation = useNavigate();
+  const onDelete = () => {
+    GlobalApi.DeleteResumeById(resume.documentId).then((resp) => {
+      toast.success("Deleted Successfully");
+      console.log('resume.documentId',resume.documentId);
+      onDeleteSuccess(resume.documentId);
+      navigation('/dashboard');
+    }).catch((err) => {
+      toast.error("Error deleting resume");
+    })
+  }
+
   return (
     <div
-      className="border border-gray-300 rounded-xl shadow-lg p-2 bg-slate-400 
-      transform hover:scale-105 transition-all duration-300 "
+      className="relative border rounded-lg shadow-md bg-slate-500 
+      transform hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-auto p-4"
     >
-      <Link to={"/dashboard/resume/"+ resume.documentId +"/edit"}>
-<div
-  className="p-16 py-24 border-2 border-dashed border-gray-400 flex flex-col 
-    justify-center items-center bg-gradient-to-br from-gray-50 to-gray-200 
-    rounded-xl h-72 w-full hover:bg-gray-300 hover:shadow-lg 
-    transition-all duration-300 cursor-pointer"
->
-  <FileText className="w-20 h-20 text-gray-500 hover:text-gray-700 transition-all duration-300" />
-  <p className="mt-4 text-gray-600 text-lg font-semibold">Resume Preview</p>
-</div>
+      {/* Dropdown - Top Left */}
+      <div className="absolute top-2 left-2">
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="blank"
+            className="p-0 border-none bg-transparent shadow-none 
+            hover:bg-transparent rounded-full transition-all duration-200"
+          >
+            <MoreVertical size={20} className="text-white hover:text-red-400 transition-colors" />
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="w-auto">
+            <Dropdown.Item onClick={() => navigation('/dashboard/resume/' + resume.documentId + "/edit")} > <Edit className="text-blue-500"/> Edit</Dropdown.Item>
+            <Dropdown.Item  onClick={() => navigation('/my-resume/' + resume.documentId + "/view")}> <Eye/>View </Dropdown.Item>
+            <Dropdown.Item  onClick={() => navigation('/my-resume/' + resume.documentId + "/view")}> <Download className="text-blue-700"/> Download </Dropdown.Item>
+            <Dropdown.Item onClick={onDelete}><Trash2 className="text-red-600"/> Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    
 
-
-        {/* Resume Title - More Readable and Bold */}
-        <h2
-          className="text-center mt-4 font-bold text-gray-900 text-xl tracking-wide 
-          hover:text-blue-600 transition-colors duration-300"
+      <Link to={`/dashboard/resume/${resume.documentId}/edit`} className="flex-grow">
+        {/* Resume Preview Box */}
+        <div
+          className="flex flex-col justify-center items-center bg-gray-300 rounded-lg 
+          border-2 border-dashed border-gray-300 py-10 px-6 hover:bg-gray-100 
+          transition-all duration-300 cursor-pointer"
         >
-          {resume.title}
-        </h2>
+          <FileText className="w-16 h-16 text-gray-700 hover:text-gray-900 transition-all duration-300" />
+          <p className="mt-3 text-gray-700 text-lg font-semibold">Resume Preview</p>
+        </div>
 
-        {/* Created Date - Subtle but Elegant */}
-        <p className="text-center text-sm text-gray-500 font-medium italic mt-2">
-          Created on:
-          <span className="text-gray-700 font-semibold ml-1">
-            {new Date(resume.createdAt).toLocaleDateString()}
-          </span>
-        </p>
+        {/* Title & Created Date */}
+        <div className="mt-4 text-center">
+          <h2
+            className="font-bold text-gray-300 text-lg tracking-wide 
+            hover:text-red-600 transition-colors duration-300"
+          >
+            {resume.title}
+          </h2>
+          <p className="text-sm text-white italic mt-1 font-bold">
+            Created on:
+            <span className=" font-semibold ml-1">
+              {new Date(resume.createdAt).toLocaleDateString()}
+            </span>
+          </p>
+        </div>
       </Link>
     </div>
   );

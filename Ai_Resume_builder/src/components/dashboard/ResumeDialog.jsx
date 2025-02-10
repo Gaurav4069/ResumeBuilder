@@ -37,10 +37,8 @@ const ResumeDialog = ({ open, setOpen }) => {
       if(resp){
         console.log(resp)
         setLoading(false)
-        setTimeout(() => {
-          navigation(`/dashboard/resume/${resp.data.data.documentId}/edit`);
-        }, 500);
-      
+        console.log('res.data.data.documentId',resp.data.data.documentId)
+        navigation(`/dashboard/resume/${resp.data.data.documentId}/edit`)
       }
       console.log(resp)
     },(error)=>{
