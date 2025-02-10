@@ -63,7 +63,7 @@ export default function Education() {
       }
     }
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
+    GlobalApi.UpdateResumeDetail(params?.resumeID,data).then(resp=>{
       toast.success('Details updated !');
       setResumeInfo((prev) => ({
         ...prev,

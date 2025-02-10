@@ -85,8 +85,9 @@ const RemoveNewExperience = () => {
         Experience: experienceList.map(({ id, ...rest }) => rest),
       },
     };
+    console.log('params id',params.resumeID)
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId, data)
+    GlobalApi.UpdateResumeDetail(params?.resumeID, data)
       .then((res) => {
         toast.success('Details updated!');
         setResumeInfo((prev) => ({

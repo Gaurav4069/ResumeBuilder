@@ -176,7 +176,7 @@ const Home = () => {
 {/* resume template  */}
     <div className="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-800 bg-opacity-40 min-h-screen flex flex-col items-center py-10">
       <div className="container w-full max-w-7xl px-6">
-        <h1 className="text-4xl font-extrabold text-center text-pretty text-white mb-8 underline">
+        <h1 className="text-4xl font-extrabold text-center text-pretty text-white mb-8">
           Resume Templates
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

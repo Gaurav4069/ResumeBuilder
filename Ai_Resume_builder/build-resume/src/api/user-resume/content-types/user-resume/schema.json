@@ -43,7 +43,7 @@
     "email": {
       "type": "string"
     },
-    "summary": {
+    "summery": {
       "type": "text"
     },
     "Experience": {

@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
-  const { resumeId } = useParams();
+  const { resumeID } = useParams();
   const [showThemePopup, setShowThemePopup] = useState(false);
   const [themeColor, setThemeColor] = useState("#ffffff"); 
   const {setResumeInfo}=useContext(ResumeInfoContext);
@@ -45,7 +45,7 @@ function FormSection() {
       }
     }
 
-      GlobalApi.UpdateResumeDetail(resumeId,data).then(resp=>{
+      GlobalApi.UpdateResumeDetail(resumeID,data).then(resp=>{
         toast.success("Theme color updated successfully")
       })
 
@@ -127,7 +127,7 @@ function FormSection() {
         <Skills />
               )
                 : activeFormIndex == 6 ? (
-                <Navigate to={'/my-resume/'+resumeId+"/view"} /> )
+                <Navigate to={'/my-resume/'+resumeID+"/view"} /> )
         : null}
 
       {/* Other sections */}
