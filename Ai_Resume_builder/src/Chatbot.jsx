@@ -46,7 +46,7 @@ const Chatbot = () => {
       {/* Chat Icon */}
       {!isChatOpen && (
         <button
-          className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+          className="bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 transition"
           onClick={() => setIsChatOpen(true)}
         >
           <MessageCircle size={40} />
@@ -57,7 +57,7 @@ const Chatbot = () => {
       {isChatOpen && (
         <div className="w-80 h-96 flex flex-col bg-white shadow-lg rounded-lg fixed bottom-16 right-5">
           {/* Header */}
-          <div className="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg ">
+          <div className="bg-purple-600 text-white p-3 flex justify-between items-center rounded-t-lg ">
           <h2 className="text-lg font-semibold ">Chat With Me</h2>
             <button onClick={() => setIsChatOpen(false)}>
               <X size={20} />
@@ -84,7 +84,7 @@ const Chatbot = () => {
           <div className="flex border-t p-2">
             <input
               type="text"
-              className="flex-grow border p-2 rounded-l-lg focus:ring-2 focus:ring-blue-500"
+              className="flex-grow border p-2 rounded-l-lg "
               placeholder="Type a message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -95,7 +95,7 @@ const Chatbot = () => {
               }}
             />
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600"
+              className="bg-purple-600 text-white px-4 py-2 rounded-r-lg hover:bg-purple-700 border border-purple-700"
               onClick={handleSend}
             >
               Send

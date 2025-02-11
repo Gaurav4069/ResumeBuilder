@@ -26,13 +26,13 @@ const Header = () => {
   }, [index]);
 
   return (
-    <div className="p-3 px-5 flex justify-between items-center shadow-md bg-[#D1E1EC] text-white border-b border-gray-200 dark:border-gray-600">
+    <div className="p-3 px-5 flex justify-between items-center shadow-md bg-[#1B262C] rounded-lg text-white border-b border-black dark:border-gray-600">
       {/* bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 */}
       {/* Logo */}
       <img src="/logo.png" className="w-16 h-16 rounded-full object-cover" alt="Logo" />
 
       {/* Welcome Text with Typewriter Effect */}
-      <h2 className="text-xl font-semibold text-center min-w-[220px] text-black">
+      <h2 className="text-xl font-semibold text-center min-w-[220px] text-[#FAE6D1]">
         {displayText}
         <span className="animate-pulse text-blue-500">|</span> {/* Blinking cursor effect */}
       </h2>
@@ -41,7 +41,7 @@ const Header = () => {
       {isSignedIn ? (
         <div className="flex gap-4 items-center">
           <Link to="/dashboard">
-            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 active:scale-95 transition">
+            <button className="bg-purple-600 text-white font-bold py-2 px-4 rounded-md hover:bg-purple-700 border-2 border-purple-600 active:scale-95 transition">
               Dashboard
             </button>
           </Link>

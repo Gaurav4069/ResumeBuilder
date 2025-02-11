@@ -13,7 +13,7 @@ const ATSComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative  h-10 bg-[#1A3636] rounded-lg border boder-bg-[#1A3636] overflow-hidden flex items-center">
+    <div className="relative  h-10 bg-[#FAE6D1] rounded-lg border border-black overflow-hidden flex items-center">
       <motion.button
         key={buttons[currentButtonIndex].id}
         className={buttons[currentButtonIndex].className}

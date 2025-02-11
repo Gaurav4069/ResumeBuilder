@@ -6,7 +6,7 @@ const AddResume = () => {
     <div
       className="h-[160px] w-[160px] border-4 border-cyan-400 
       flex items-center justify-center rounded-full 
-      bg-blue-700 hover:bg-blue-800 cursor-pointer mt-20 
+      bg-purple-600 hover:bg-purple-800 cursor-pointer mt-20 
       shadow-lg hover:shadow-cyan-500/50 
       animate-scalePulse"
     >
