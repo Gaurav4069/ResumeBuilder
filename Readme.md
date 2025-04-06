@@ -73,6 +73,8 @@ VIDEO LINK:  https://drive.google.com/file/d/18kIcubInjtP_-0yJI_Dn4zXScX74Rq9J/v
         2. OTP-based authentication for enhanced security.
         3. Users receive a welcome email upon successful registration.
 
+## Screenshots of website
+
 ![Home Screen/Herosection](https://github.com/user-attachments/assets/b396d2a1-9986-4303-9bac-466e69d17ad1)
 ![Features](https://github.com/user-attachments/assets/1b2b5712-f0a7-497a-a0ae-8b26e552a4c8)
 ![PreDefined Resume Templates](https://github.com/user-attachments/assets/17d2815a-1a0a-4f72-8c17-8a4d81a08921)
