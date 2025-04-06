@@ -14,6 +14,8 @@ import EditResumeWindow from "./components/Templates/EditResumeWindow.jsx"
 import ViewResume from "./my-resume/[resumeId]/view/index.jsx";
 import AtsScoring from "./AtsScoring/AtsScoring.jsx";
 import ImageUpload from "./AtsScoring/ImageUploadAts.jsx";
+import TermsAndConditions from "./components/TermsAndConditions.jsx";
+import AboutUs from "./components/Templates/AboutUs.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
         path: "/ImageAtsScoring",
         element: <ImageUpload />,
       },
+      {
+        path: '/termsandconditions',
+        element: <TermsAndConditions/>,
+      },
+      {
+        path: '/aboutus',
+        element: <AboutUs/>,
+      }
     ],
   },
   {
@@ -67,7 +77,8 @@ const router = createBrowserRouter([
   {
     path: '/my-resume/:resumeId/view',
     element: <ViewResume />,
-  }
+  },
+  
 ]);
 
 createRoot(document.getElementById("root")).render(

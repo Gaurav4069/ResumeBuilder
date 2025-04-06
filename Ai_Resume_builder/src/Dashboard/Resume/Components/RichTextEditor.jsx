@@ -12,7 +12,7 @@ export default function RichTextEditor({ onRichTextEditorChange, index,defaultVa
     return (
         <div>
             <EditorProvider>
-            <Editor value={value} onChange={(e)=>{
+            <Editor className="bg-gray-900 text-white" value={value} onChange={(e)=>{
         setValue(e.target.value);
         onRichTextEditorChange(e)
       }}>

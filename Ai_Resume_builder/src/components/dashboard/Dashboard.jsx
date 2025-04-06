@@ -30,7 +30,7 @@ const Dashboard = () => {
   };  
 
   return (
-    <div className="p-10 md:px-20 lg:px-32  bg-gradient-to-br from-gray-500 via-gray-700 to-black ">
+    <div className="p-10 md:px-20 lg:px-32  bg-gray-900 ">
      <h2 className="font-bold text-3xl text-center text-gray-100  decoration-red-600 decoration-4">
     My Resumes
   </h2>

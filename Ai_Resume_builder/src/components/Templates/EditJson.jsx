@@ -55,12 +55,12 @@ const API_KEY = import.meta.env.VITE_STRAPI_API_KEY;
   
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Edit Resume JSON</h2>
+    <div className="p-6 bg-gray-800 rounded-lg">
+      <h2 className="text-xl text-white font-bold mb-4">Edit Resume JSON</h2>
 
       {/* JSON Textarea Editor */}
       <textarea
-        className="w-full h-96 border p-2 rounded font-mono text-sm"
+        className="w-full h-96 border text-white bg-gray-700 p-2 rounded-lg font-mono text-sm"
         value={editedData}
         onChange={handleChange}
       />

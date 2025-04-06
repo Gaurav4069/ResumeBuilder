@@ -50,7 +50,7 @@ const ResumeDialog = ({ open, setOpen }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+      <div className="bg-white p-6  rounded-lg shadow-lg w-96">
         <h2 className="text-xl font-semibold">Create New Resume</h2>
         <p className="text-gray-600 mt-2">Add a title for your new resume</p>
         <input

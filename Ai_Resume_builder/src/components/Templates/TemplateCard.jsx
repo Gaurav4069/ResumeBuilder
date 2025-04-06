@@ -1,19 +1,21 @@
 const TemplateCard = ({ template, onSelect, thumbnail }) => {
   return (
     <div
-      className="border rounded-lg shadow-md p-4 bg-gradient-to-r from-blue-500 to-purple-500 w-[270px] cursor-pointer"
+      className="border border-gray-800 rounded-xl shadow-lg p-4 bg-gradient-to-br from-[#1e293b] to-[#0f172a] 
+      bg-opacity-80 backdrop-blur-md w-[270px] cursor-pointer transition-all hover:shadow-blue-500/30 hover:scale-105"
       onClick={() => onSelect(template)}
     >
       <div
-        className="p-4 flex justify-center items-center bg-gradient-to-r from-blue-300 to-purple-300 rounded-lg h-[300px] w-[235px] hover:scale-105 transition-all hover:shadow-md border-dashed"
+        className="p-3 flex justify-center items-center bg-[#1c1f26] rounded-lg h-[300px] w-[225px] 
+        hover:scale-105 transition-all hover:shadow-md border border-gray-700"
       >
         <img
           src={thumbnail}
-          alt={template.title || "Template"}
-          className="w-full h-full object-cover rounded-lg"
+          alt={template.title || 'Template'}
+          className="w-full h-full object-cover rounded-md"
         />
       </div>
-      <h2 className="text-center my-2 font-semibold text-white">{template.title}</h2>
+      <h2 className="text-center my-3 font-semibold text-gray-200 tracking-wide">{template.title}</h2>
     </div>
   );
 };

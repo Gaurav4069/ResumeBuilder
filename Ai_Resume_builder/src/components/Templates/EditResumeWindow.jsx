@@ -31,8 +31,8 @@ const EditResumeWindow = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Edit Resume</h2>
+    <div className="p-6 bg-gray-300">
+      <h1 className="text-xl font-bold mb-4">Edit Resume</h1>
 
       {resumeData && (
         <div className="flex gap-6">

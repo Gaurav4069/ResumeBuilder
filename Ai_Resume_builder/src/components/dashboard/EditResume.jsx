@@ -24,7 +24,7 @@ const EditResume = () => {
   return (
       <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }} >
           <SummaryAi.Provider value={{output,setOutput}}>
-    <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10'>
+    <div className='grid grid-cols-1 md:grid-cols-2 bg-gray-300 p-10 gap-10'>
       {/* Form section */}
       <FormSection />
       {/* preview section */}
