@@ -12,6 +12,11 @@
   list-style: decimal;
   padding-left: 2em;
 }
+
+
+/* #root{
+  background-color:#AD8B73;
+} */
  /* this media query is aplied only when the page is printed */
 @media print{
   #no-print{

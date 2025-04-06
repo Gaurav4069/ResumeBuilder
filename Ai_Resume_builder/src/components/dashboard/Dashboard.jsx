@@ -32,9 +32,10 @@ const Dashboard = () => {
   return (
     <div className="p-10 md:px-20 lg:px-32  bg-gray-900 ">
      <h2 className="font-bold text-3xl text-center text-gray-100  decoration-red-600 decoration-4">
+
     My Resumes
   </h2>
-  <p className="m-8 ml-0 mt-0 text-center text-yellow-400 text-lg">
+  <p className="m-8 ml-0 mt-0 text-center text-white text-lg">
     Start creating AI-powered resumes for your next job role.
   </p>
       {/* Add spacing with 'gap-6' for grid items */}

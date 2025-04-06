@@ -10,6 +10,7 @@ const AddResume = () => {
       backdrop-blur-md  bg-opacity-70 
       cursor-pointer mt-20 shadow-xl 
       transition-all duration-300 hover:scale-105 hover:shadow-blue-600/50"
+
     >
       {/* Plus Icon with Elegant Glow */}
       <Plus 

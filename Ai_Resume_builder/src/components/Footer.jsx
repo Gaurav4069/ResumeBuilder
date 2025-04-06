@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
   
 
+
 export default function Footer() {
   return (
     <div className='border border-black rounded-lg'>
@@ -64,7 +65,9 @@ export default function Footer() {
                         className="text-[#FAE6D1] hover:text-white font-semibold block pb-2 text-sm"
                         href="https://www.creative-tim.com/presentation?ref=njs-profile"
                       >
+
                        <Link to="/aboutus"><span className='text-[#FAE6D1]'>About Us</span></Link>
+
                       </a>
                     </li>
 
@@ -80,6 +83,7 @@ export default function Footer() {
 
                     
 
+
                   </ul>
                 </div>
               </div>
@@ -91,3 +95,4 @@ export default function Footer() {
     </div>
   );
 }
+

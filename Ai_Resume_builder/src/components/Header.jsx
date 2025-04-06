@@ -38,6 +38,7 @@ const Header = () => {
       </h2>
 
       {/* User Authentication Buttons */}
+
       <div className="flex gap-4 items-center">
         {/* Show Home button if not on the home page */}
         {location.pathname !== "/" && (
@@ -62,6 +63,7 @@ const Header = () => {
           <Link to="/auth/sign-in">
             <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 active:scale-95 transition">
               Get Started
+
             </button>
           </Link>
         )}
