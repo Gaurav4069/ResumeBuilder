@@ -10,7 +10,6 @@ import ATSComponent from "./AtsScoring/AtsComponent.jsx";
 
 
 function App() {
- 
   return (
     <>
       <Toaster />

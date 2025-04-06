@@ -63,7 +63,7 @@ export default function Education() {
       }
     }
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
+    GlobalApi.UpdateResumeDetail(params?.resumeID,data).then(resp=>{
       toast.success('Details updated !');
       setResumeInfo((prev) => ({
         ...prev,
@@ -77,81 +77,81 @@ export default function Education() {
 
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Education</h2>
-      <p>Add your educational details</p>
+    <div className="p-5 shadow-2xl bg-gray-800 rounded-lg border-t-primary border-t-4 mt-10">
+      <h2 className="font-bold text-white text-lg">Education</h2>
+      <p className='text-gray-300'>Add your educational details</p>
 
       <div>
         {educationalList.length === 0 ? (
-          <p>No education details added yet. Click "Add More Education" to start.</p>
+          <p className='text-gray-300'>No education details added yet. Click "Add More Education" to start.</p>
         ) : (
           educationalList.map((item, index) => (
             <div key={index} className="grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg">
               <div>
-                <label className="text-xs font-semibold">University Name</label>
+                <label className="text-xs text-white font-semibold">University Name</label>
                 <input
                   type="text"
                   name="universityName"
                   value={item.universityName}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                   placeholder="Enter university name"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold">Degree</label>
+                <label className="text-sm text-white font-semibold">Degree</label>
                 <input
                   type="text"
                   name="degree"
                   value={item.degree}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                   placeholder="Enter degree"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold">Major</label>
+                <label className="text-sm text-white font-semibold">Major</label>
                 <input
                   type="text"
                   name="major"
                   value={item.major}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                   placeholder="Enter major"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold">Start Date</label>
+                <label className="text-sm text-white font-semibold">Start Date</label>
                 <input
                   type="date"
                   name="startDate"
                   value={item.startDate}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold">End Date</label>
+                <label className="text-sm text-white font-semibold">End Date</label>
                 <input
                   type="date"
                   name="endDate"
                   value={item.endDate}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                 />
               </div>
 
               <div className="col-span-2">
-                <label className="text-sm font-semibold">Description</label>
+                <label className="text-sm text-white font-semibold">Description</label>
                 <textarea
                   name="description"
                   value={item.description}
                   onChange={(event) => handleChange(index, event)}
-                  className="w-full p-2 border rounded-md mt-1"
+                  className="w-full p-2 bg-gray-700 text-white border rounded-md mt-1"
                   placeholder="Enter description"
                 />
               </div>
@@ -162,14 +162,14 @@ export default function Education() {
 
       <div className="flex justify-between">
         <div className="flex gap-2">
-          <button onClick={AddNewEducation} className="border px-4 py-2 rounded-md text-primary">
+          <button onClick={AddNewEducation} className="border px-4 py-2 bg-gray-800 hover:bg-gray-900 rounded-md text-primary ">
             + Add More Education
           </button>
-          <button onClick={RemoveEducation} className="border px-4 py-2 rounded-md text-primary">
+          <button onClick={RemoveEducation} className="border px-4 py-2 rounded-md bg-gray-800 hover:bg-gray-900 text-primary ">
             - Remove More Education
           </button>
         </div>
-        <button onClick={onSave} className="px-4 py-2 rounded bg-blue-500 text-white">
+        <button onClick={onSave} className="px-4 py-2 rounded bg-blue-700 text-white hover:bg-blue-800">
           Save
         </button>
       </div>

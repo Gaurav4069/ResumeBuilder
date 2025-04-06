@@ -26,10 +26,13 @@ const AtsScoring = () => {
       contents: [
         {
           parts: [
-            { text: `Job Description: ${jobDescription}` },
-            { text: `Skills: ${skills}` },
+            { text:`Job Description: ${jobDescription} ` },
+            { text: `Skills: ${skills} `},
             { text: `Experience: ${experience}` },
-            { text: "Check the ATS score based on scale of 0-100 and give answer in numeric value  and also suggest few changes to improve the score" },
+
+            {text:`Check the ATS score based on scale of 0-100 and return the output strictly in the following format:
+ATS Score: <numeric_score>/100`},
+
           ]
         }
       ]
@@ -66,10 +69,12 @@ const AtsScoring = () => {
     }
 
     setLoading(false);
-  };
+  }; 
 
   return (
-    <div className="w-screen flex items-center justify-center bg-[#DCDCDC] text-white p-8">
+
+    <div className="w-screen flex items-center justify-center bg-gray-900 text-white p-8">
+
       {/* Main Container */}
       <div className="flex flex-col border border-gray-600 p-6 rounded-lg shadow-2xl bg-gray-800 w-full max-w-5xl">
 

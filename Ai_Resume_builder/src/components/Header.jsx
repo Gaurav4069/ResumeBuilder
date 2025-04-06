@@ -7,7 +7,7 @@ const Header = () => {
   const text = "WELCOME TO OUR AI RESUME BUILDER WEBSITE";
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
-  
+
   useEffect(() => {
     let typingInterval;
     if (index < text.length) {
@@ -21,7 +21,7 @@ const Header = () => {
         setIndex(0);
       }, 2000); // Wait for 2 seconds before restarting
     }
-    
+
     return () => clearInterval(typingInterval);
   }, [index]);
 
@@ -38,22 +38,36 @@ const Header = () => {
       </h2>
 
       {/* User Authentication Buttons */}
-      {isSignedIn ? (
-        <div className="flex gap-4 items-center">
-          <Link to="/dashboard">
-            <button className="bg-purple-600 text-white font-bold py-2 px-4 rounded-md hover:bg-purple-700 border-2 border-purple-600 active:scale-95 transition">
-              Dashboard
+
+      <div className="flex gap-4 items-center">
+        {/* Show Home button if not on the home page */}
+        {location.pathname !== "/" && (
+          <Link to="/">
+            <button className="bg-gray-400 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-500 active:scale-95 transition">
+              Home
             </button>
           </Link>
-          <UserButton />
-        </div>
-      ) : (
-        <Link to="/auth/sign-in">
-          <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 active:scale-95 transition">
-            Get Started
-          </button>
-        </Link>
-      )}
+        )}
+
+        {/* User Authentication Buttons */}
+        {isSignedIn ? (
+          <>
+            <Link to="/dashboard">
+              <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 active:scale-95 transition">
+                Dashboard
+              </button>
+            </Link>
+            <UserButton />
+          </>
+        ) : (
+          <Link to="/auth/sign-in">
+            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 active:scale-95 transition">
+              Get Started
+
+            </button>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

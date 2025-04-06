@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [resumeList, setResumeList] = useState([]);
   const { user } = useUser();
-  const {resumeId}=useParams();
+  const {resumeID}=useParams();
 
 
   useEffect(() => {
@@ -30,8 +30,9 @@ const Dashboard = () => {
   };  
 
   return (
-    <div className="p-10 md:px-20 lg:px-32  bg-gradient-to-br from-gray-500 via-gray-700 to-black ">
-     <h2 className="font-bold text-3xl text-center text-[#FAE6D1] ">
+    <div className="p-10 md:px-20 lg:px-32  bg-gray-900 ">
+     <h2 className="font-bold text-3xl text-center text-gray-100  decoration-red-600 decoration-4">
+
     My Resumes
   </h2>
   <p className="m-8 ml-0 mt-0 text-center text-white text-lg">

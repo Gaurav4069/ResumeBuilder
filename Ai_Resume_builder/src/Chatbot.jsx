@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { MessageCircle, X } from "lucide-react"; // Icons for UI
 
@@ -81,7 +80,7 @@ const Chatbot = () => {
           </div>
 
           {/* Input Box */}
-          <div className="flex border-t p-2">
+          <div className="flex gap-2 border-t p-2">
             <input
               type="text"
               className="flex-grow border p-2 rounded-l-lg "

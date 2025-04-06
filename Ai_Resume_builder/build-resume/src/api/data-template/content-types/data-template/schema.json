@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "data_templates",
+  "info": {
+    "singularName": "data-template",
+    "pluralName": "data-templates",
+    "displayName": "Data Template",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "structure": {
+      "type": "json"
+    },
+    "user_id": {
+      "type": "string"
+    }
+  }
+}

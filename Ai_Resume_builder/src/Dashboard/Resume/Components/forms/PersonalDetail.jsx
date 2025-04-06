@@ -11,6 +11,7 @@ export default function PersonalDetail() {
 
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
+  console.log(params)
 
   // State for geocoding suggestions
   const [query, setQuery] = useState("");
@@ -83,8 +84,9 @@ export default function PersonalDetail() {
 
     const data = { data: formData };
     console.log("Submitting Data:", data);
+    console.log(params.resumeID)
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId, data)
+    GlobalApi.UpdateResumeDetail(params?.resumeID, data)
       .then((resp) => {
         setLoading(false);
         console.log("Response:", resp);
@@ -98,51 +100,51 @@ export default function PersonalDetail() {
   };
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Personal Detail</h2>
-      <p>Get started with the basic information</p>
+    <div className="p-5  border-gray-600 shadow-2xl bg-gray-800 rounded-lg border-t-primary border-t-4 mt-10">
+      <h2 className="font-bold text-white text-lg">Personal Detail</h2>
+      <p className="text-gray-300">Get started with the basic information</p>
 
       <form onSubmit={onSave}>
         <div className="grid grid-cols-2 mt-5 gap-3">
           <div>
-            <label className="text-sm">First Name</label>
+            <label className="text-sm  text-white">First Name</label>
             <input
               name="firstName"
               required
               value={formData?.firstName || ""}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full border text-white bg-gray-700 border-gray-300 rounded"
             />
           </div>
           <div>
-            <label className="text-sm">Last Name</label>
+            <label className="text-sm text-white">Last Name</label>
             <input
               name="lastName"
               required
               value={formData?.lastName || ""}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full border text-white bg-gray-700 border-gray-300 rounded"
             />
           </div>
           <div className="col-span-2">
-            <label className="text-sm">Job Title</label>
+            <label className="text-sm text-white">Job Title</label>
             <input
               name="jobTitle"
               required
               value={formData?.jobTitle || ""}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full border text-white bg-gray-700 border-gray-300 rounded"
             />
           </div>
           <div className="col-span-2 relative">
-            <label className="text-sm">Address</label>
+            <label className="text-sm text-white">Address</label>
             <input
               name="address"
               type="text"
               required
               value={query}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full border text-white bg-gray-700 border-gray-300 rounded"
               placeholder="Enter address"
             />
             {/* Geocoding Suggestions Dropdown */}
@@ -161,23 +163,23 @@ export default function PersonalDetail() {
             )}
           </div>
           <div>
-            <label className="text-sm">Phone</label>
+            <label className="text-sm text-white">Phone</label>
             <input
               name="phone"
               required
               value={formData?.phone || ""}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full bg-gray-700 text-white border border-gray-300 rounded"
             />
           </div>
           <div>
-            <label className="text-sm">Email</label>
+            <label className="text-sm text-white">Email</label>
             <input
               name="email"
               required
               value={formData?.email || ""}
               onChange={handleInputChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-2 w-full border bg-gray-700 text-white  border-gray-300 rounded"
             />
           </div>
         </div>

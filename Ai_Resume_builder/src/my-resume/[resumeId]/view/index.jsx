@@ -11,6 +11,7 @@ import { RWebShare } from 'react-web-share'
 function ViewResume() {
   const [resumeInfo,setResumeInfo]=useState();
   const {resumeId}=useParams();
+  console.log(resumeId)
 
   useEffect(()=>{
       GetResumeInfo();
@@ -55,7 +56,7 @@ function ViewResume() {
         
     </div>
     <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-    <div id="print-area" >
+    <div id="print-area bg-white" >
           <ResumePreview />
         </div>
         </div>

@@ -14,15 +14,12 @@
     "@strapi/plugin-cloud": "5.9.0",
     "@strapi/plugin-users-permissions": "5.9.0",
     "@strapi/strapi": "5.9.0",
-    "autoprefixer": "^10.4.20",
     "better-sqlite3": "11.3.0",
-    "postcss": "^8.5.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "sqlite3": "^5.1.7",
-    "styled-components": "^6.0.0",
-    "tailwindcss": "^4.0.3"
+    "styled-components": "^6.0.0"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
@@ -30,5 +27,10 @@
   },
   "strapi": {
     "uuid": "ad8c35f6-8b75-463b-b031-1d6f626dac7b"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1"
   }
 }

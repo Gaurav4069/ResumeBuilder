@@ -85,8 +85,9 @@ const RemoveNewExperience = () => {
         Experience: experienceList.map(({ id, ...rest }) => rest),
       },
     };
+    console.log('params id',params.resumeID)
 
-    GlobalApi.UpdateResumeDetail(params?.resumeId, data)
+    GlobalApi.UpdateResumeDetail(params?.resumeID, data)
       .then((res) => {
         toast.success('Details updated!');
         setResumeInfo((prev) => ({
@@ -101,9 +102,9 @@ const RemoveNewExperience = () => {
 
   return (
     <div>
-      <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
-        <h2 className='font-bold text-lg'>Professional Experience</h2>
-        <p>Add your previous job experience</p>
+      <div className='p-5 shadow-lg rounded-lg bg-gray-800 border-t-primary border-t-4 mt-10'>
+        <h2 className='font-bold text-white text-lg'>Professional Experience</h2>
+        <p className='text-gray-300'>Add your previous job experience</p>
 
         <div>
           {experienceList.map((item, index) => (
@@ -111,77 +112,77 @@ const RemoveNewExperience = () => {
               <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
                 {/* Job Title */}
                 <div>
-                  <label className='text-xs font-semibold'>Position Title</label>
+                  <label className='text-xs text-white font-semibold'>Position Title</label>
                   <input
                     type='text'
                     name='title'
                     value={item.title}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full p-2 border text-white bg-gray-700 rounded-md mt-1'
                     placeholder='Enter job title'
                   />
                 </div>
 
                 {/* Company Name */}
                 <div>
-                  <label className='text-sm font-semibold'>Company Name</label>
+                  <label className='text-sm text-white font-semibold'>Company Name</label>
                   <input
                     type='text'
                     name='companyName'
                     value={item.companyName}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full p-2 text-white bg-gray-700 border rounded-md mt-1'
                     placeholder='Enter company name'
                   />
                 </div>
 
                 {/* City */}
                 <div>
-                  <label className='text-sm font-semibold'>City</label>
+                  <label className='text-sm text-white font-semibold'>City</label>
                   <input
                     type='text'
                     name='city'
                     value={item.city}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full bg-gray-700 text-white p-2 border rounded-md mt-1'
                     placeholder='Enter city'
                   />
                 </div>
 
                 {/* State */}
                 <div>
-                  <label className='text-sm font-semibold'>State</label>
+                  <label className='text-sm text-white font-semibold'>State</label>
                   <input
                     type='text'
                     name='state'
                     value={item.state}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full p-2 text-white bg-gray-700 border rounded-md mt-1'
                     placeholder='Enter state'
                   />
                 </div>
 
                 {/* Start Date */}
                 <div>
-                  <label className='text-sm font-semibold'>Start Date</label>
+                  <label className='text-sm text-white font-semibold'>Start Date</label>
                   <input
                     type='date'
                     name='startDate'
                     value={item.startDate}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full p-2 text-white bg-gray-700 border rounded-md mt-1'
                   />
                 </div>
 
                 {/* End Date */}
                 <div>
-                  <label className='text-sm font-semibold'>End Date</label>
+                  <label className='text-sm text-white font-semibold'>End Date</label>
                   <input
                     type='date'
                     name='endDate'
                     value={item.endDate}
                     onChange={(event) => handleChange(index, event)}
-                    className='w-full p-2 border rounded-md mt-1'
+                    className='w-full p-2 text-white bg-gray-700 border rounded-md mt-1'
                   />
                 </div>
 
@@ -201,13 +202,13 @@ const RemoveNewExperience = () => {
           <div className='flex gap-2'>
             <button
               onClick={AddNewExperience}
-              className='border border-primary text-primary px-4 py-2 rounded-md hover:bg-gray-100'
+              className='border border-primary text-primary px-4 py-2 rounded-md bg-gray-800 hover:bg-gray-900'
             >
               + Add More Experience
             </button>
             <button
               onClick={RemoveNewExperience}
-              className='border border-primary text-primary px-4 py-2 rounded-md hover:bg-gray-100'
+              className='border border-primary text-primary px-4 py-2 rounded-md bg-gray-800 hover:bg-gray-900'
             >
               - Remove More Experience
             </button>
@@ -215,7 +216,7 @@ const RemoveNewExperience = () => {
           <button
             type='submit'
             onClick={onSave}
-            className='px-4 py-2 rounded border bg-blue-500 border-blue-700 text-white flex items-center gap-2'
+            className='px-4 py-2 rounded border bg-blue-700 border-blue-700 hover:bg-blue-800 text-white flex items-center gap-2'
           >
             Save
           </button>

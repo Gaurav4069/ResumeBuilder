@@ -1,6 +1,7 @@
 'use strict';
 
 /**
+ * user-resume controller
  * user-resume router
  */
 

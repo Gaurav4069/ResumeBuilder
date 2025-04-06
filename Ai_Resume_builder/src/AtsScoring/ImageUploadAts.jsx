@@ -69,7 +69,9 @@ const ImageUpload = () => {
         {
           parts: [
             { text: `Job Description: ${extractedText}` },
-            { text: "Check the ATS score based on scale of 0-100 and give answer in numeric value  and also suggest few changes to improve the score" },
+            {text:`Based on the job description provided, please evaluate the resume and return the output strictly in the following format:
+              ATS Score: <numeric_score>/100`},
+              
           ]
         }
       ]
@@ -106,7 +108,9 @@ const ImageUpload = () => {
     setLoading(false);
   };
   return (
-    <div className="flex flex-col items-center p-6 bg-[#DCDCDC] shadow-lg w-full mx-auto text-white border p-32 border-gray-700 transition-all duration-300">
+
+    <div className="flex flex-col items-center p-6 bg-gray-900 shadow-lg w-full mx-auto text-white border p-32 border-gray-700 transition-all duration-300">
+
   <div className="flex flex-col border border-gray-600 p-6 rounded-lg shadow-2xl bg-gray-800 w-full max-w-5xl">
 
     {/* 🔹 Introduction Section (Full Width) */}
@@ -130,11 +134,13 @@ const ImageUpload = () => {
       <div className="w-full lg:w-2/3 flex flex-col items-center lg:items-start">
         <div className="w-full bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
           <label className="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 flex justify-center transition-all duration-200">
-            Select Image
+
+            Select Image (Max size 200KB)
             <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
           </label>
 
-          {/* 🖼️ Image Preview */}
+          {/* 🖼 Image Preview */}
+
           {preview && (
             <div className="mt-4 flex justify-center">
               <img src={preview} alt="Preview" className="w-48 h-48 object-cover rounded-lg shadow-md border border-gray-700 transition-all duration-300 hover:scale-105" />

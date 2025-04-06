@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "resumeId": {
+    "resumeID": {
       "type": "string"
     },
     "userEmail": {

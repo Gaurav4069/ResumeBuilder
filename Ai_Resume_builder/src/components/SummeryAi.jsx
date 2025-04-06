@@ -42,13 +42,13 @@ const SummeryAi = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-white shadow-lg rounded-lg p-2 w-full max-w-md">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">AI Text Generator</h2>
+      <div className=" shadow-lg bg-gray-700 rounded-lg p-2 w-full max-w-md">
+        <h2 className="text-xl font-semibold text-white mb-4">AI Text Generator</h2>
 
        
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border text-white bg-gray-700 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter text..."
           value={input}
           onChange={(e) => setInput(e.target.value)}

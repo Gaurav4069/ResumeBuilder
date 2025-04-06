@@ -369,6 +369,111 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDataTemplateDataTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'data_templates';
+  info: {
+    description: '';
+    displayName: 'Data Template';
+    pluralName: 'data-templates';
+    singularName: 'data-template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::data-template.data-template'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    structure: Schema.Attribute.JSON;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_id: Schema.Attribute.String;
+  };
+}
+
+export interface ApiResumeTemplateResumeTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'resume_templates';
+  info: {
+    description: '';
+    displayName: 'Resume Template';
+    pluralName: 'resume-templates';
+    singularName: 'resume-template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::template-category.template-category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_premium: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resume-template.resume-template'
+    > &
+      Schema.Attribute.Private;
+    preview_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    structure: Schema.Attribute.JSON;
+    thumbnail: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTemplateCategoryTemplateCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'template_categories';
+  info: {
+    displayName: 'Template Category';
+    pluralName: 'template-categories';
+    singularName: 'template-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::template-category.template-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiUserResumeUserResume extends Struct.CollectionTypeSchema {
   collectionName: 'user_resumes';
   info: {
@@ -399,7 +504,7 @@ export interface ApiUserResumeUserResume extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    resumeId: Schema.Attribute.String;
+    resumeID: Schema.Attribute.String;
     Skills: Schema.Attribute.Component<'skills.skills', true>;
     summery: Schema.Attribute.Text;
     themeColor: Schema.Attribute.String;
@@ -921,6 +1026,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::data-template.data-template': ApiDataTemplateDataTemplate;
+      'api::resume-template.resume-template': ApiResumeTemplateResumeTemplate;
+      'api::template-category.template-category': ApiTemplateCategoryTemplateCategory;
       'api::user-resume.user-resume': ApiUserResumeUserResume;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
